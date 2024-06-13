@@ -13,6 +13,10 @@ export class SubscriptionType {
 }
 
 export class AuthDto {
+	@IsString()
+	@IsOptional()
+	name?: string
+
 	@IsEmail()
 	email: string
 

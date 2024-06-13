@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Chat, Message } from '@prisma/client'
 import {
-	ChatCompletionFunctionMessageParam,
 	ChatCompletionMessageParam,
 	ChatCompletionSystemMessageParam
 } from 'openai/resources'
@@ -110,19 +109,19 @@ export class ChatService {
 		}
 
 		const allMessages: ChatCompletionMessageParam[] = [
-			systemMessage,
-			...lastMessages.map(
-				message =>
-					({
-						role: message.role,
-						content: message.content
-					}) as ChatCompletionFunctionMessageParam
-			),
+			// systemMessage,
+			// ...lastMessages.map(
+			// 	message =>
+			// 		({
+			// 			role: message.role,
+			// 			content: message.content
+			// 		}) as ChatCompletionFunctionMessageParam
+			// ),
 			{ role: 'user', content: content }
 		]
 
 		const response = await openai.chat.completions.create({
-			model: 'gpt-3.5-turbo',
+			model: 'gpt-4-turbo',
 			messages: allMessages
 		})
 
